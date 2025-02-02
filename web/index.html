@@ -52,10 +52,27 @@
     </a>
   </div>
 
+  <div class="code-section">
+    <div class="code-title">Bash one-liner linux/winblows/macos</div>
+    <code class="code-block" onclick="copyToClipboard(this)">curl -sSL https://get.troca.dev | bash</code>
+  </div>
+
   <footer>
-    Made with ❤️ in Europe by <a href="https://github.com/lfaoro">Leonardo Faoro</a>. All rights reserved, none waived
+    Made with <3 in Europe by <a href="https://github.com/lfaoro">Leonardo Faoro</a>. All rights reserved, none waived
     ever.
   </footer>
+
+  <script>
+  function copyToClipboard(element) {
+    navigator.clipboard.writeText(element.textContent).then(() => {
+      // Add the copied class temporarily
+      element.classList.add('copied');
+      setTimeout(() => {
+        element.classList.remove('copied');
+      }, 1000);
+    });
+  }
+  </script>
 </body>
 
 </html>
