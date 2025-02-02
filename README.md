@@ -30,9 +30,10 @@ go install github.com/lfaoro/troca/cmd/troca@latest
 nix-shell -iA troca
 ```
 
-## Configuration
+## Storage
 
 - `~/.config/troca/settings.toml`
+- `~/.config/troca/transactions`
 - `~/.config/troca/wallets`
 
 ## Remote Access
