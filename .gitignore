@@ -1,4 +1,7 @@
 cmd/apiserver/*
+cmd/troca_api/*
+cmd/troca_ssh/*
+cmd/test/*
 
 gen/*
 bin/*
