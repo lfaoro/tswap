@@ -22,13 +22,20 @@ a:hover {
 }
 
 h1 {
-  margin-top: 200px;
+  margin-top: 100px;
   margin-bottom: 0px;
+  text-align: center;
 }
 
-#footer {
+h3 {
+  text-align: center;
+}
+
+footer {
   margin-top: auto;
   font-size: 0.8em;
+  text-align: center;
+  padding: 1rem;
 }
 
 .buttons {
@@ -36,6 +43,7 @@ h1 {
   gap: 1rem;
   justify-content: center;
   margin: 2rem 0;
+  padding: 0 1rem;
 }
 
 .button {
@@ -61,4 +69,29 @@ h1 {
 
 .button svg {
   vertical-align: middle;
+}
+
+/* Add media query for mobile devices */
+@media (max-width: 600px) {
+  body {
+    font-size: 110%;
+  }
+
+  .buttons {
+    flex-direction: column;
+    width: 80%;
+    max-width: 300px;
+    align-items: center;
+    margin: 2rem auto;
+  }
+
+  .button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  footer {
+    font-size: 0.6em;
+  }
 }
