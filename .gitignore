@@ -10,3 +10,4 @@ bin/*
 .env
 .wrangler
 .todo
+.vscode

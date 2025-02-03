@@ -1,4 +1,4 @@
-# troca - The Crypto Swap CLI ([feminine] /'tɾɔka/ - to exchange/swap)
+# troca - The Crypto Swap s/CLI/TUI/g ([feminine] /'tɾɔka/ - to exchange/swap)
 
 > Seamlessly swap between crypto pairs leveraging multiple Decentralized Exchanges.
 
@@ -30,6 +30,12 @@ go install github.com/lfaoro/troca/cmd/troca@latest
 nix-shell -iA troca
 ```
 
+### MacOS (brew)
+
+```bash
+brew install lfaoro/tap/troca
+```
+
 ## Storage
 
 - `~/.config/troca/settings.toml`
@@ -39,16 +45,16 @@ nix-shell -iA troca
 ## Remote Access
 
 - SSH: ```ssh troca@ssh.troca.dev``` (WIP: coming soon)
-- Web: https://troca.dev (WIP: coming soon)
+- Web: https://app.troca.dev (WIP: coming soon)
 
 ## Build it yourself
 
 > requires [Go](https://go.dev/doc/install)
 
 ```bash
-git clone https://github.com/lfaoro/troca.git
+git clone https://github.com/lfaoro/troca.git && cd troca
 make build
-bin/troca -h
+bin/troca
 ```
 
 ## Contributing
