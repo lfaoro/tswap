@@ -9,6 +9,7 @@ body {
   font-family: Arial, sans-serif;
   font-size: 130%;
   overflow-x: hidden;
+  position: relative;
 }
 
 a {
@@ -23,7 +24,7 @@ a:hover {
 
 h1 {
   margin-top: 100px;
-  margin-bottom: 0px;
+  margin-bottom: 0.5rem;
   text-align: center;
 }
 
@@ -31,18 +32,28 @@ h3 {
   text-align: center;
 }
 
+h4 {
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
 footer {
   margin-top: auto;
   font-size: 0.8em;
   text-align: center;
   padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  max-width: 100%;
+  color: rgba(0, 0, 0, 0.56);
 }
 
 .buttons {
   display: flex;
   gap: 1rem;
   justify-content: center;
-  margin: 2rem 0;
+  margin: 0.5rem 0;
   padding: 0 1rem;
 }
 
@@ -72,7 +83,7 @@ footer {
 }
 
 .code-section {
-  margin: 2rem 0;
+  margin: 2rem 0 0.5rem 0;
   text-align: center;
   width: 80%;
   max-width: 600px;
@@ -123,10 +134,60 @@ footer {
   color: #28a745;
 }
 
+.bottom-nav {
+  text-align: center;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+  font-size: 0.8em;
+  box-sizing: border-box;
+  max-width: 100%;
+  color: rgba(0, 0, 0, 0.56);
+}
+
+.nav-link {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.nav-link::before {
+  content: '[';
+}
+
+.nav-link::after {
+  content: ']';
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  flex: 1;
+}
+
+.footer-container {
+  width: 100%;
+  margin-top: auto;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
 /* Add media query for mobile devices */
 @media (max-width: 600px) {
   body {
     font-size: 110%;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 
   .buttons {
@@ -145,30 +206,46 @@ footer {
 
   .code-section {
     width: 90%;
-    margin: 1.5rem auto;
+    margin: 0.5rem auto;
   }
 
   .code-block {
-    font-size: 0.8em;
+    font-size: 0.85em;
     padding: 0.75rem 3.5rem 0.75rem 0.75rem;
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
   }
 
   .code-title {
-    font-size: 0.8em;
+    font-size: 0.85em;
   }
 
   footer {
-    font-size: 0.6em;
+    font-size: 0.75em;
+    margin-top: auto;
+    padding: 0.5rem;
+    word-wrap: break-word;
+    max-width: 100%;
+    line-height: 1.4;
   }
 
   .code-block::after {
-    font-size: 0.65em;
+    font-size: 0.75em;
     right: 5px;
     width: 3rem;
     text-align: center;
     white-space: normal;
     line-height: 1.2;
+  }
+
+  .bottom-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 0.5rem 0.5rem;
+    font-size: 0.75em;
+    box-sizing: border-box;
   }
 }
