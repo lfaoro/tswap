@@ -1,6 +1,8 @@
-# troca - The Crypto Swap s/CLI/TUI/g ([feminine] /'tɾɔka/ - to exchange/swap)
+# Troca - The Crypto Swap s/CLI/TUI/g
 
-> Seamlessly swap between crypto pairs leveraging multiple Decentralized Exchanges.
+<sub>([feminine] /'tɾɔka/ - to exchange/swap)</sub>
+
+> Troca helps you seamlessly swap between crypto pairs leveraging multiple Decentralized Exchanges.
 
 ## Features
 
