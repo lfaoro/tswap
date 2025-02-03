@@ -8,26 +8,36 @@
 
 set -e
 
+check_permissions() {
+    DIR="$1"
+    local temp_file="permission_check_$(date +%s%N)"
+    if touch "$DIR/$temp_file" 2>/dev/null; then
+        echo "You have permission to write to $DIR without sudo."
+        rm "$DIR/$temp_file"
+    else
+        INSTALL_DIR="/tmp"
+    fi
+}
+
 REPO="lfaoro/troca"
 LATEST_RELEASE_URL="https://github.com/${REPO}/releases/latest"
 DOWNLOAD_URL="https://github.com/${REPO}/releases/download"
 
-# Detect OS and architecture
 OS=$(uname -s | tr '[:upper:]' '[:lower:]')
 ARCH=$(uname -m)
 
 case "${ARCH}" in
-    x86_64|amd64) ARCH="amd64" ;;
+    x86_64|amd64) ARCH="x86_64" ;;
     aarch64|arm64) ARCH="arm64" ;;
     *) echo "Unsupported architecture: ${ARCH}"; exit 1 ;;
 esac
 
 case "${OS}" in
-    linux) BINARY_NAME="troca-linux-${ARCH}" ;;
-    darwin) BINARY_NAME="troca-darwin-${ARCH}" ;;
+    linux) BINARY_NAME="troca_linux_${ARCH}" ;;
+    darwin) BINARY_NAME="troca_darwin_${ARCH}" ;;
     msys*|mingw*) 
         OS="windows"
-        BINARY_NAME="troca-windows-${ARCH}.exe" 
+        BINARY_NAME="troca_windows_${ARCH}.exe" 
         ;;
     *) echo "Unsupported operating system: ${OS}"; exit 1 ;;
 esac
@@ -38,12 +48,12 @@ if [ -z "${VERSION}" ]; then
     exit 1
 fi
 
-# Create installation directory
 INSTALL_DIR="/usr/local/bin"
 if [ "${OS}" = "windows" ]; then
     INSTALL_DIR="$HOME/bin"
 fi
 mkdir -p "${INSTALL_DIR}"
+check_permissions "$INSTALL_DIR"
 
 DOWNLOAD_BINARY_URL="${DOWNLOAD_URL}/${VERSION}/${BINARY_NAME}"
 
@@ -56,11 +66,11 @@ else
     chmod +x "${INSTALL_DIR}/troca"
 fi
 
-echo "Successfully installed troca to ${INSTALL_DIR}"
-echo "Make sure ${INSTALL_DIR} is in your PATH"
+echo "Successfully installed troca to"
+echo "$ ${INSTALL_DIR}/troca"
 
 if [ "${OS}" = "windows" ]; then
-    "${INSTALL_DIR}/troca.exe" --version
+    "${INSTALL_DIR}/troca.exe" --debug
 else
-    "${INSTALL_DIR}/troca" --version
+    "${INSTALL_DIR}/troca" --debug
 fi
