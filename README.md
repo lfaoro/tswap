@@ -12,7 +12,11 @@
 - Command-line interface
 - SSH and Web interfaces (WIP: coming soon)
 
-## Watch the [Demo](asset/demo.mp4)
+## Demo
+<video width="100%" autoplay muted controls loop>
+  <source src="https://troca.dev/asset/demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ## Installation
 
