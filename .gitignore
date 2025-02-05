@@ -6,6 +6,7 @@ cmd/test/*
 gen/*
 bin/*
 
+*.log
 .tmp
 .env
 .wrangler
