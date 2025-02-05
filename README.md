@@ -12,6 +12,8 @@
 - Command-line interface
 - SSH and Web interfaces (WIP: coming soon)
 
+## Watch the [Demo](asset/demo.mp4)
+
 ## Installation
 
 ### Bash one-liner
@@ -37,8 +39,6 @@ nix-shell -iA troca
 ```bash
 brew install lfaoro/tap/troca
 ```
-
-![Demo](asset/demo.mp4)
 
 ## Storage
 
