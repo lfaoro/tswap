@@ -4,73 +4,102 @@
 # Use of this source code is governed by the AGPL-3.0 license
 # found in the LICENSE file.
 
-#!/bin/bash
+set -euo pipefail
 
-set -e
+# Cleanup function
+cleanup() {
+    if [ -n "${TEMP_FILE:-}" ]; then
+        rm -f "$TEMP_FILE"
+    fi
+}
+trap cleanup EXIT
+
+# Error handler
+error() {
+    echo "Error: $1" >&2
+    exit 1
+}
 
 check_permissions() {
-    DIR="$1"
-    local temp_file="permission_check_$(date +%s%N)"
-    if touch "$DIR/$temp_file" 2>/dev/null; then
-        echo "You have permission to write to $DIR without sudo."
-        rm "$DIR/$temp_file"
-    else
+    local dir="$1"
+    TEMP_FILE=$(mktemp -t troca_install_XXXXXX) || error "Failed to create temp file"
+    if ! mv "$TEMP_FILE" "$dir/" 2>/dev/null; then
+        echo "Warning: No write permission in $dir"
         INSTALL_DIR="/tmp"
+    fi
+    rm -f "$dir/$(basename "$TEMP_FILE")"
+}
+
+check_path() {
+    local dir="$1"
+    if [[ ":$PATH:" != *":$dir:"* ]]; then
+        echo "Warning: $dir is not in your PATH"
+        case "$SHELL" in
+            *bash) echo "Run: echo 'export PATH=\$PATH:$dir' >> ~/.bashrc" ;;
+            *zsh)  echo "Run: echo 'export PATH=\$PATH:$dir' >> ~/.zshrc" ;;
+            *)     echo "Add $dir to your PATH" ;;
+        esac
     fi
 }
 
+# Configuration
 REPO="lfaoro/troca"
 LATEST_RELEASE_URL="https://github.com/${REPO}/releases/latest"
 DOWNLOAD_URL="https://github.com/${REPO}/releases/download"
 
+# Detect system information
 OS=$(uname -s | tr '[:upper:]' '[:lower:]')
 ARCH=$(uname -m)
 
+# Normalize architecture
 case "${ARCH}" in
     x86_64|amd64) ARCH="x86_64" ;;
     aarch64|arm64) ARCH="arm64" ;;
-    *) echo "Unsupported architecture: ${ARCH}"; exit 1 ;;
+    *) error "Unsupported architecture: ${ARCH}" ;;
 esac
 
+# Set binary name and install directory based on OS
 case "${OS}" in
-    linux) BINARY_NAME="troca_linux_${ARCH}" ;;
-    darwin) BINARY_NAME="troca_darwin_${ARCH}" ;;
-    msys*|mingw*) 
-        OS="windows"
-        BINARY_NAME="troca_windows_${ARCH}.exe" 
+    linux)
+        BINARY_NAME="troca_linux_${ARCH}"
+        INSTALL_DIR="$HOME/.local/bin"
         ;;
-    *) echo "Unsupported operating system: ${OS}"; exit 1 ;;
+    darwin)
+        BINARY_NAME="troca_darwin_${ARCH}"
+        INSTALL_DIR="$HOME/.local/bin"
+        ;;
+    msys*|mingw*)
+        OS="windows"
+        BINARY_NAME="troca_windows_${ARCH}.exe"
+        INSTALL_DIR="$HOME/bin"
+        ;;
+    *) error "Unsupported operating system: ${OS}" ;;
 esac
 
-VERSION=$(curl -sL ${LATEST_RELEASE_URL} | grep -o "v[0-9]\.[0-9]\.[0-9]" | head -n1)
-if [ -z "${VERSION}" ]; then
-    echo "Failed to get latest version"
-    exit 1
-fi
+# Get latest version
+VERSION=$(curl -sSL ${LATEST_RELEASE_URL} | grep -o "v[0-9]\+\.[0-9]\+\.[0-9]\+" | head -n1) || error "Failed to fetch latest version"
+[ -z "${VERSION}" ] && error "Failed to parse version number"
 
-INSTALL_DIR="/usr/local/bin"
-if [ "${OS}" = "windows" ]; then
-    INSTALL_DIR="$HOME/bin"
-fi
-mkdir -p "${INSTALL_DIR}"
+# Create installation directory
+mkdir -p "${INSTALL_DIR}" || error "Failed to create installation directory"
 check_permissions "$INSTALL_DIR"
 
+# Download and install binary
 DOWNLOAD_BINARY_URL="${DOWNLOAD_URL}/${VERSION}/${BINARY_NAME}"
-
 echo "Downloading troca ${VERSION} for ${OS}/${ARCH}..."
-if [ "${OS}" = "windows" ]; then
-    curl -L "${DOWNLOAD_BINARY_URL}" -o "${INSTALL_DIR}/troca.exe"
-    chmod +x "${INSTALL_DIR}/troca.exe"
-else
-    curl -L "${DOWNLOAD_BINARY_URL}" -o "${INSTALL_DIR}/troca"
-    chmod +x "${INSTALL_DIR}/troca"
-fi
-
-echo "Successfully installed troca to"
-echo "$ ${INSTALL_DIR}/troca"
 
 if [ "${OS}" = "windows" ]; then
-    "${INSTALL_DIR}/troca.exe" --debug
+    curl -fsSL "${DOWNLOAD_BINARY_URL}" -o "${INSTALL_DIR}/troca.exe" || error "Download failed"
+    chmod +x "${INSTALL_DIR}/troca.exe" || error "Failed to set executable permissions"
+    BINARY_PATH="${INSTALL_DIR}/troca.exe"
 else
-    "${INSTALL_DIR}/troca" --debug
+    curl -fsSL "${DOWNLOAD_BINARY_URL}" -o "${INSTALL_DIR}/troca" || error "Download failed"
+    chmod +x "${INSTALL_DIR}/troca" || error "Failed to set executable permissions"
+    BINARY_PATH="${INSTALL_DIR}/troca"
 fi
+
+echo "Successfully installed troca to: ${BINARY_PATH}"
+check_path "${INSTALL_DIR}"
+
+# Verify installation
+"${BINARY_PATH}" --version || error "Failed to run troca"
