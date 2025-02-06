@@ -13,10 +13,10 @@
 - SSH and Web interfaces (WIP: coming soon)
 
 ## Demo
-<video width="100%" autoplay muted controls loop>
-  <source src="https://troca.dev/asset/demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+
+[![Troca Demo](assets/demo.gif)](assets/demo.gif)
+
+_Click the image above to view full size_
 
 ## Installation
 
@@ -32,7 +32,7 @@ curl -sSL https://get.troca.dev | bash
 go install github.com/lfaoro/troca/cmd/troca@latest
 ```
 
-### Nix
+### Nix (soon)
 
 ```bash
 nix-shell -iA troca
