@@ -15,7 +15,7 @@
 ## Demo
 
 <a href="https://troca.dev/asset/demo.mp4">
-  <img src="docs/assets/demo.gif" alt="Demo GIF" />
+  <img src="asset/demo.gif" alt="Demo GIF" />
 </a>
 
 _Click the image above to view full size_
