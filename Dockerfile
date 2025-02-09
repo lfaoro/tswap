@@ -1,5 +1,4 @@
-ARG APP_NAME=troca_api
 FROM busybox
 WORKDIR /app
-COPY ./bin/${APP_NAME} /app/${APP_NAME}
+COPY ./bin/troca_api /app/troca_api
 CMD ["/app/troca_api"]

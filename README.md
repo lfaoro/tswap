@@ -1,8 +1,9 @@
-# Troca - The Crypto Swap s/CLI/TUI/g
+# Troca - Freedom of Exchange via Crypto Swap s/CLI/TUI/g
 
 > Troca helps you seamlessly swap between crypto pairs leveraging multiple Decentralized Exchanges.
 
 <sub>([feminine] /'tɾɔka/ - to exchange/swap)</sub>
+
 
 ## Features
 
@@ -18,7 +19,7 @@
   <img src="asset/demo.gif" alt="Demo GIF" />
 </a>
 
-_Click the image above to view full size_
+_Click the image above to view the video_
 
 ## Installation
 
@@ -34,16 +35,16 @@ curl -sSL https://get.troca.dev | bash
 go install github.com/lfaoro/troca/cmd/troca@latest
 ```
 
-### Nix (soon)
-
-```bash
-nix-shell -iA troca
-```
-
 ### MacOS (brew)
 
 ```bash
 brew install lfaoro/tap/troca
+```
+
+### Nix (soon)
+
+```bash
+nix-shell -iA troca
 ```
 
 ## Storage

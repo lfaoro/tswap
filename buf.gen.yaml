@@ -8,5 +8,8 @@ plugins:
   - remote: buf.build/grpc/go
     out: gen/go
     opt: paths=source_relative
+  # - remote: buf.build/grpc-gateway/gateway
+  #   out: gen/go
+  #   opt: paths=source_relative
 inputs:
   - directory: proto
