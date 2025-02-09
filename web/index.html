@@ -76,7 +76,15 @@
     </div>
 
     <div class="video-container">
-      <video autoplay loop muted playsinline class="demo-video">
+      <video autoplay loop muted playsinline class="demo-video" onclick="openVideoModal()">
+        <source src="asset/demo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- Add modal container -->
+    <div id="videoModal" class="modal" onclick="closeVideoModal()">
+      <video id="modalVideo" controls class="modal-content">
         <source src="asset/demo.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -103,6 +111,21 @@
       });
     }
     loadComponent('bottom-nav', 'src/components/bottom-nav.html');
+
+    // Add modal functionality
+    function openVideoModal() {
+      const modal = document.getElementById('videoModal');
+      const modalVideo = document.getElementById('modalVideo');
+      modal.style.display = 'flex';
+      modalVideo.play();
+    }
+
+    function closeVideoModal() {
+      const modal = document.getElementById('videoModal');
+      const modalVideo = document.getElementById('modalVideo');
+      modal.style.display = 'none';
+      modalVideo.pause();
+    }
   </script>
 
 </body>
