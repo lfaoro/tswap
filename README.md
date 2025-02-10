@@ -83,10 +83,10 @@ I love pull requests, don't hesitate.
 
 - Star the repo
 - Tell your friends
-- [Sponsor](https://github.com/sponsors/lfaoro)
-- [FIAT Donation](https://checkout.revolut.com/pay/7c8fae59-f65b-44de-9875-39dc014dc817)
 - XMR **9XCyahmZiQgcVwjrSZTcJepPqCxZgMqwbABvzPKVpzC7gi8URDme8H6UThpCqX69y5i1aA81AKq57Wynjovy7g4K9MeY5c**
 - BTC **bc1qzaqeqwklaq86uz8h2lww87qwfpnyh9fveyh3hs**
+- [FIAT Donation](https://checkout.revolut.com/pay/7c8fae59-f65b-44de-9875-39dc014dc817)
+- [Sponsor](https://github.com/sponsors/lfaoro)
 
 ## Disclaimer
 
