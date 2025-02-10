@@ -77,6 +77,17 @@ I love pull requests, don't hesitate.
 - [issues](https://github.com/lfaoro/troca/issues)
 - [telegram](https://t.me/trocaswap)
 
+## Help Troca grow
+
+> With your help, we can make Troca better.
+
+- Star the repo
+- Tell your friends
+- [Sponsor](https://github.com/sponsors/lfaoro)
+- [FIAT Donation](https://checkout.revolut.com/pay/7c8fae59-f65b-44de-9875-39dc014dc817)
+- XMR **9XCyahmZiQgcVwjrSZTcJepPqCxZgMqwbABvzPKVpzC7gi8URDme8H6UThpCqX69y5i1aA81AKq57Wynjovy7g4K9MeY5c**
+- BTC **bc1qzaqeqwklaq86uz8h2lww87qwfpnyh9fveyh3hs**
+
 ## Disclaimer
 
 I, Leonardo Faoro, provide a service (hereinafter referred to as "the Platform") that facilitates the swapping of crypto tokens by integrating third-party services. Please be aware of the following:
