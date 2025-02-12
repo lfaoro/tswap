@@ -7,17 +7,17 @@ cleanup() {
     exit 0
 }
 watchkill() {
-    inotifywait -e modify $(find . -name '*.go') && {
+    while true; do
+    inotifywait -e modify $(find ./app -name '*.go') && {
         # Find and kill all troca processes
-        pkill -f "go run.*troca" || true
-        pkill troca || true
+        pkill -x troca || true
     }
+    done
 }
 trap cleanup SIGINT SIGTERM
 (watchkill) &
 
 while true; do
     export TERM=xterm-256color
-    go run -ldflags="-X main.APIURL=localhost:8080" ./cmd/troca -d
-    sleep 1  # Prevent CPU spinning if go run fails
+    go run -ldflags="-X main.APIURL=localhost:8080" ./cmd/troca --debug
 done
