@@ -8,8 +8,7 @@ cleanup() {
 }
 watchkill() {
     while true; do
-    inotifywait -e modify $(find ./app -name '*.go') && {
-        # Find and kill all troca processes
+    inotifywait -e modify $(find ./app -name '*.go') || {
         pkill -x troca || true
     }
     done
