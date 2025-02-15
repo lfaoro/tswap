@@ -44,14 +44,13 @@ brew install lfaoro/tap/troca
 ### Nix (soon)
 
 ```bash
-nix-shell -iA troca
+nix-env -iA troca
 ```
 
 ## Storage
 
-- `~/.config/troca/settings.toml`
-- `~/.config/troca/transactions`
-- `~/.config/troca/wallets`
+- `~/.config/troca/config.ini`
+- `~/.config/troca/transactions.log`
 
 ## Remote Access
 
