@@ -1,9 +1,6 @@
-# Troca - Freedom of Exchange via Crypto Swap s/CLI/TUI/g
+# TSwap - Crypto Swap s/CLI/TUI/g
 
-> Troca helps you seamlessly swap between crypto pairs leveraging multiple Decentralized Exchanges.
-
-<sub>([feminine] /'tɾɔka/ - to exchange/swap)</sub>
-
+> TSwap helps you seamlessly swap between crypto pairs leveraging multiple Decentralized Exchanges.
 
 ## Features
 
@@ -11,11 +8,13 @@
 - Cross-chain swaps
 - Privacy-focused
 - Command-line interface
+- Terminal user interface
+- Hashed wallets
 - SSH and Web interfaces (WIP: coming soon)
 
 ## Demo
 
-<a href="https://troca.dev/asset/demo.mp4">
+<a href="https://tswap.app/asset/demo.mp4">
   <img src="asset/demo.gif" alt="Demo GIF" />
 </a>
 
@@ -26,45 +25,45 @@ _Click the image above to view the video_
 ### Bash one-liner
 
 ```bash
-curl -sSL https://get.troca.dev | bash
+curl -sSL https://get.tswap.app | bash
 ```
 
 ### Go install
 
 ```bash
-go install github.com/lfaoro/troca/cmd/troca@latest
+go install github.com/lfaoro/tswap/cmd/tswap@latest
 ```
 
 ### MacOS (brew)
 
 ```bash
-brew install lfaoro/tap/troca
+brew install lfaoro/tap/tswap
 ```
 
 ### Nix (soon)
 
 ```bash
-nix-env -iA troca
+nix-env -iA tswap
 ```
 
 ## Storage
 
-- `~/.config/troca/config.ini`
-- `~/.config/troca/transactions.log`
+- `~/.config/tswap/config.ini`
+- `~/.config/tswap/transactions.log`
 
 ## Remote Access
 
-- SSH: ```ssh troca@ssh.troca.dev``` (WIP: coming soon)
-- Web: https://app.troca.dev (WIP: coming soon)
+- SSH: ```ssh tswap@ssh.tswap.app``` (WIP: coming soon)
+- Web: https://app.tswap.app (WIP: coming soon)
 
 ## Build it yourself
 
 > requires [Go](https://go.dev/doc/install)
 
 ```bash
-git clone https://github.com/lfaoro/troca.git && cd troca
+git clone https://github.com/lfaoro/tswap.git && cd tswap
 make build
-bin/troca
+bin/tswap
 ```
 
 ## Contributing
@@ -73,12 +72,12 @@ I love pull requests, don't hesitate.
 
 ## Support
 
-- [issues](https://github.com/lfaoro/troca/issues)
-- [telegram](https://t.me/trocaswap)
+- [issues](https://github.com/lfaoro/tswap/issues)
+- [telegram](https://t.me/tswapswap)
 
-## Help Troca grow
+## Help TSwap grow
 
-> With your help, we can make Troca better.
+> With your help, we can make TSwap better.
 
 - Star the repo
 - Tell your friends
@@ -87,9 +86,16 @@ I love pull requests, don't hesitate.
 - [FIAT Donation](https://checkout.revolut.com/pay/7c8fae59-f65b-44de-9875-39dc014dc817)
 - [Sponsor](https://github.com/sponsors/lfaoro)
 
+## Roadmap
+- release
+- implement secure address reuse feature via sha256/hmac
+- implement auto clipboard
+- create stylish themes
+- implement birdpay feature
+
 ## Disclaimer
 
-I, Leonardo Faoro, provide a service (hereinafter referred to as "the Platform") that facilitates the swapping of crypto tokens by integrating third-party services. Please be aware of the following:
+We provide a service (hereinafter referred to as "the Platform") that facilitates the swapping of crypto tokens by integrating third-party services. Please be aware of the following:
 
 - **No Ownership or Custody**: I do not own, hold in custody, or control any of the crypto tokens that are exchanged. All transactions occur directly between users through external services.
 

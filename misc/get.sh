@@ -43,7 +43,8 @@ check_path() {
 }
 
 # Configuration
-REPO="lfaoro/troca"
+APP_NAME=tswap
+REPO="lfaoro/tswap"
 LATEST_RELEASE_URL="https://github.com/${REPO}/releases/latest"
 DOWNLOAD_URL="https://github.com/${REPO}/releases/download"
 
@@ -61,16 +62,16 @@ esac
 # Set binary name and install directory based on OS
 case "${OS}" in
     linux)
-        BINARY_NAME="troca_linux_${ARCH}"
+        BINARY_NAME="${APP_NAME}_linux_${ARCH}"
         INSTALL_DIR="$HOME/.local/bin"
         ;;
     darwin)
-        BINARY_NAME="troca_darwin_${ARCH}"
+        BINARY_NAME="${APP_NAME}_darwin_${ARCH}"
         INSTALL_DIR="$HOME/.local/bin"
         ;;
     msys*|mingw*)
         OS="windows"
-        BINARY_NAME="troca_windows_${ARCH}.exe"
+        BINARY_NAME="${APP_NAME}_windows_${ARCH}.exe"
         INSTALL_DIR="$HOME/bin"
         ;;
     *) error "Unsupported operating system: ${OS}" ;;
@@ -86,20 +87,20 @@ check_permissions "$INSTALL_DIR"
 
 # Download and install binary
 DOWNLOAD_BINARY_URL="${DOWNLOAD_URL}/${VERSION}/${BINARY_NAME}"
-echo "Downloading troca ${VERSION} for ${OS}/${ARCH}..."
+echo "Downloading ${APP_NAME} ${VERSION} for ${OS}/${ARCH}..."
 
 if [ "${OS}" = "windows" ]; then
-    curl -fsSL "${DOWNLOAD_BINARY_URL}" -o "${INSTALL_DIR}/troca.exe" || error "Download failed"
-    chmod +x "${INSTALL_DIR}/troca.exe" || error "Failed to set executable permissions"
-    BINARY_PATH="${INSTALL_DIR}/troca.exe"
+    curl -fsSL "${DOWNLOAD_BINARY_URL}" -o "${INSTALL_DIR}/${APP_NAME}.exe" || error "Download failed"
+    chmod +x "${INSTALL_DIR}/${APP_NAME}.exe" || error "Failed to set executable permissions"
+    BINARY_PATH="${INSTALL_DIR}/${APP_NAME}.exe"
 else
-    curl -fsSL "${DOWNLOAD_BINARY_URL}" -o "${INSTALL_DIR}/troca" || error "Download failed"
-    chmod +x "${INSTALL_DIR}/troca" || error "Failed to set executable permissions"
-    BINARY_PATH="${INSTALL_DIR}/troca"
+    curl -fsSL "${DOWNLOAD_BINARY_URL}" -o "${INSTALL_DIR}/${APP_NAME}" || error "Download failed"
+    chmod +x "${INSTALL_DIR}/${APP_NAME}" || error "Failed to set executable permissions"
+    BINARY_PATH="${INSTALL_DIR}/${APP_NAME}"
 fi
 
-echo "Successfully installed troca to: ${BINARY_PATH}"
+echo "Successfully installed ${APP_NAME} to: ${BINARY_PATH}"
 check_path "${INSTALL_DIR}"
 
 # Verify installation
-"${BINARY_PATH}" --version || error "Failed to run troca"
+"${BINARY_PATH}" --version || error "Failed to run ${APP_NAME}"
