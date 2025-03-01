@@ -4,7 +4,7 @@ include ../.env
 
 all: deploy purge
 deploy:
-	npx wrangler pages deploy --project-name=troca --commit-dirty=true --branch=main .
+	npx wrangler pages deploy --project-name=tswap --commit-dirty=true --branch=main .
 purge: 
 	curl -X POST "https://api.cloudflare.com/client/v4/zones/$(CF_ZONE)/purge_cache" \
 	 -H "Authorization: Bearer $(CLOUDFLARE_API_KEY)" \
