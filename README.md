@@ -1,4 +1,4 @@
-# TSwap - Crypto Swap s/CLI/TUI/g
+# TSwap - The Crypto Swaps Terminal
 
 > TSwap helps you seamlessly swap between crypto pairs leveraging multiple Decentralized Exchanges.
 
@@ -10,7 +10,7 @@
 - Command-line interface
 - Terminal user interface
 - Hashed wallets
-- SSH and Web interfaces (WIP: coming soon)
+- SSH privacy swaps (WIP: coming soon)
 
 ## Demo
 
@@ -48,22 +48,21 @@ nix-env -iA tswap
 
 ## Storage
 
-- `~/.config/tswap/config.ini`
-- `~/.config/tswap/transactions.log`
+- `~/.config/tswap/config`
 
 ## Remote Access
 
 - SSH: ```ssh tswap@ssh.tswap.app``` (WIP: coming soon)
-- Web: https://app.tswap.app (WIP: coming soon)
 
 ## Build it yourself
 
 > requires [Go](https://go.dev/doc/install)
 
 ```bash
-git clone https://github.com/lfaoro/tswap.git && cd tswap
-make build
-bin/tswap
+git clone https://github.com/lfaoro/tswap.git \
+&& cd tswap \
+&& make build \
+&& bin/tswap
 ```
 
 ## Contributing
@@ -73,7 +72,7 @@ I love pull requests, don't hesitate.
 ## Support
 
 - [issues](https://github.com/lfaoro/tswap/issues)
-- [telegram](https://t.me/tswapswap)
+- [telegram](https://t.me/termswap)
 
 ## Help TSwap grow
 
